@@ -23,18 +23,18 @@ public class Main {
         Medicine med = new Medicine();
         Orders order = new Orders();
         int count = 0;
+        
+        
+        System.out.println("||****WELCOME TO JUDE'S PHARMACY****||\n-----------------------------------\n");
+        user.getUserList().add(new Adult(1, "Jude", "jude44", 18, 2000));
+        user.getUserList().add(new Adult(2, "Maire", "cabalhao44", 19, 5000));
+        user.getUserList().add(new SeniorCitizen(3, "Waley", "P@ssw0rd", 70, 5000));
+        user.getUserList().add(new Admin("adminjude", "Waleys"));
 
-        user.getUserList().add(new Adult(1, "Patchan", "Gwapoako", 19, 1000));
-        user.getUserList().add(new Adult(2, "Patrick", "Pogiako", 19, 5000));
-        user.getUserList().add(new SeniorCitizen(3, "Patik", "P@ssw0rd", 62, 5000));
-        user.getUserList().add(new Admin("Jude", "Jude44"));
-
-//        for(int i = 0; i<user.getUserList().size();i++){
-//            System.out.println("ID: "+user.getUserList().get(i).getId()+"Username: "+user.getUserList().get(i).getUserName() + "\nPassword: "+ user.getUserList().get(i).getPassWord());
-//        }
-        med.getMedicineList().add(new BodyPain(1, "Ibuprofen + Paracetamol", "Alaxan", "Body Pain", 8.25, 100));
-        med.getMedicineList().add(new BodyPain(2, "Paracetamol Caffeine", "Rexidol", "Body Pain", 15.50, 75));
-        med.getMedicineList().add(new BodyPain(3, "Ibuprofen", "Medicol Advance", "Body Pain", 6.00, 100));
+      for(int i = 0; i<user.getUserList().size();i++){
+           System.out.println("ID: "+user.getUserList().get(i).getId()+"Username: "+user.getUserList().get(i).getUserName() + "\nPassword: "+ user.getUserList().get(i).getPassWord());
+       }
+      
 
         med.getMedicineList().add(new Allergies(4, "Cetirizine", "Allerkid", "Allergies", 8, 50));
         med.getMedicineList().add(new Allergies(5, "Loratadine", "Allerta", "Allergies", 16, 50));
@@ -43,19 +43,20 @@ public class Main {
         med.getMedicineList().add(new Cough(7, "Carbocisteine", "Solmux", "Cough", 17, 50));
         med.getMedicineList().add(new Cough(8, "Ambroxol", "Myracof", "Cough", 22, 50));
         med.getMedicineList().add(new Cough(9, "Ambroxol", "Expel OD", "Cough", 29, 50));
+        
+        med.getMedicineList().add(new BodyPain(1, "Ibuprofen + Paracetamol", "Alaxan", "Body Pain", 8.25, 100));
+        med.getMedicineList().add(new BodyPain(2, "Paracetamol Caffeine", "Rexidol", "Body Pain", 15.50, 75));
+        med.getMedicineList().add(new BodyPain(3, "Ibuprofen", "Medicol Advance", "Body Pain", 6.00, 100));
 
-        med.getMedicineList().add(new Headache(10, "Paracetamol", "Biogesic 325", "Headache", 6, 50));
-        med.getMedicineList().add(new Headache(11, "Paracetamol", "Biogesic", "Headache", 8, 50));
-        med.getMedicineList().add(new Headache(12, "Paracetamol", "UHP Fevertab", "Headache", 5, 50));
+//        med.getMedicineList().add(new Headache(10, "Paracetamol", "Biogesic 325", "Headache", 6, 50));
+//        med.getMedicineList().add(new Headache(11, "Paracetamol", "Biogesic", "Headache", 8, 50));
+//        med.getMedicineList().add(new Headache(12, "Paracetamol", "UHP Fevertab", "Headache", 5, 50));
 
         order.getOrderList().add(new Orders(110, 1, 1, "Alaxan", 4, 33));
         order.getOrderList().add(new Orders(11, 3, 2, "Rexidol", 6, 50));
         order.getOrderList().add(new Orders(91, 2, 11, "Biogesic", 6, 40));
 
-        for (int i = 0; i < order.getOrderList().size(); i++) {
-            System.out.println("[ Int ID: " + order.getOrderList().get(i).getId() + ", User ID: " + order.getOrderList().get(i).getUserId() + ", Ordered Name: " + order.getOrderList().get(i).getOrderedName() + ", Quantity: " + order.getOrderList().get(i).getQuantity() + ", Total Amount: " + order.getOrderList().get(i).getAmount() + " ]");
-        }
-
+    
         while (true) {
             System.out.println("1. Log in\n2. Register \n");
             System.out.print("Enter choice: ");
@@ -73,17 +74,17 @@ public class Main {
 
                 if (a instanceof Admin == true) {
                     while (true) {
-                        System.out.println("Your account is now logged in as an Administrator! ");
-                        System.out.println("-------------------------------------------------------------------------------");
+                        System.out.println("You are logged in as ADMIN! ");
+                        System.out.println("------------------------------------------------------------------------");
                         System.out.println("Choose transactions:\n0. Add Medicine\n1. Remove Medicine\n2. Display Medicines\n3. View Orders\n4. Logout");
                         System.out.print("Enter your choice: ");
                         int option = input.nextInt();
                         if (option == 0) {
-                            Admin gwapo = new Admin();
-                            med.getMedicineList().add(gwapo.addMedicine(med));
+                            Admin adminjude = new Admin();
+                            med.getMedicineList().add(adminjude.addMedicine(med));
                         } else if (option == 1) {
-                            Admin gwapo = new Admin();
-                            med.getMedicineList().remove(gwapo.removeMedicine(med));
+                            Admin adminjude = new Admin();
+                            med.getMedicineList().remove(adminjude.removeMedicine(med));
                             for (int i = 0; i < med.getMedicineList().size(); i++) {
                                 med.getMedicineList().get(i).setId(i + 1);
                             }
