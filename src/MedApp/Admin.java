@@ -57,10 +57,6 @@ class Admin extends User {
             e = new Allergies(size,genName, bName, "Allergies", Double.valueOf(price), Integer.valueOf(qty));
             return e;
         }
-        else if(option1 == 4){
-            e = new Headache(size,genName, bName, "Headache", Double.valueOf(price), Integer.valueOf(qty));
-            return e;
-        }
         else{
             error();
         }

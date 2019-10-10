@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author 2ndyrGroupB
  */
-public class UserAndOrder {
+public class Transaction {
     
     private double money;
     private int id;
@@ -19,15 +19,15 @@ public class UserAndOrder {
     private String name;
     private int qty;
     private double amount;
-    ArrayList<UserAndOrder> uaoList = new ArrayList<UserAndOrder>();
+    ArrayList<Transaction> uaoList = new ArrayList<Transaction>();
     
-    public UserAndOrder(){}
+    public Transaction(){}
             
-    public UserAndOrder(double money, Orders e){
+    public Transaction(double money, Orders e){
         this(money, e.getId(),e.getUserId(),e.getOrderedName(),e.getQuantity(),e.getAmount());
     }
     
-    public UserAndOrder(double money, int id, int id2, String name, int qty, double amount){
+    public Transaction(double money, int id, int id2, String name, int qty, double amount){
         this.money = money;
         this.id = id;
         this.id2 = id2;
@@ -60,7 +60,7 @@ public class UserAndOrder {
         return amount;
     }
 
-    public ArrayList<UserAndOrder> getUaoList() {
+    public ArrayList<Transaction> getUaoList() {
         return uaoList;
     }
 

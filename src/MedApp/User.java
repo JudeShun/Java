@@ -5,14 +5,16 @@
  */
 package MedApp;
 
+//import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  *
  * @author 2ndyrGroupB
  */
-public class User {
+public class User extends UserList{
 
     Scanner input = new Scanner(System.in);
     private String userName;
@@ -156,12 +158,16 @@ public class User {
         System.out.print("Input Username: ");
         String name = input.nextLine();
         int counts = 0;
-        for (int i = 0; i < userList.size(); i++) {
+        boolean array;
+        array = Arrays.stream((getUsername()).anyMatch(name::equals));
+        if(array == true){
+            s
+        }
             if (name.equals(userList.get(i).getUserName()) == false) {
                 counts += 1;
                 if (counts == userList.size()) {
                     error();
-            }
+//            }
             } else {
                 int count = 0;
                 System.out.println("Username matched!");
