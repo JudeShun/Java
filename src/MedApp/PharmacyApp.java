@@ -23,10 +23,9 @@ public class PharmacyApp {
         Medicine med = new Medicine();
         Orders order = new Orders();
         int count = 0;
-
-//        user.getUserList().add(new Adult(1, "Maire", "Maire44", 18, 500));
-//        user.getUserList().add(new SeniorCitizen(2, "Jude", "Jude44", 62,2000));
-//        user.getUserList().add(new Admin("adminjude", "cabalhao"));
+      user.getUserList().add(new Adult(1, "Maire", "Maire44", 18, 500));
+      user.getUserList().add(new SeniorCitizen(2, "Jude", "Jude44", 62,2000));
+       user.getUserList().add(new Admin("adminjude", "cabalhao"));
 
 
         med.getMedicineList().add(new BodyPain(1, "Ibuprofen + Paracetamol", "Alaxan", "Body Pain", 8.25, 100));
@@ -51,7 +50,7 @@ public class PharmacyApp {
         }
 
         while (true) {
-            System.out.println("1. Log in\n2. Register \n");
+            System.out.println("---------------***WELCOME TO JUDE'S PHARMACY***--------------\n Choices:\n |Press 1 to Login|\n |Press 2 to Register|");
             System.out.print("Enter choice: ");
             int regOrLogIn = input.nextInt();
             if (regOrLogIn == 2) {
@@ -74,11 +73,11 @@ public class PharmacyApp {
                         System.out.print("Enter your choice: ");
                         int option = input.nextInt();
                         if (option == 0) {
-                            Admin gwapo = new Admin();
-                            med.getMedicineList().add(gwapo.addMedicine(med));
+                            Admin jude= new Admin();
+                            med.getMedicineList().add(jude.addMedicine(med));
                         } else if (option == 1) {
-                            Admin gwapo = new Admin();
-                            med.getMedicineList().remove(gwapo.removeMedicine(med));
+                            Admin jude = new Admin();
+                            med.getMedicineList().remove(jude.removeMedicine(med));
                             for (int i = 0; i < med.getMedicineList().size(); i++) {
                                 med.getMedicineList().get(i).setId(i + 1);
                             }
