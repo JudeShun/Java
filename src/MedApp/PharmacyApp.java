@@ -23,9 +23,9 @@ public class PharmacyApp {
         Medicine med = new Medicine();
         Orders order = new Orders();
         int count = 0;
-      user.getUserList().add(new Adult(1, "Maire", "Maire44", 18, 500));
-      user.getUserList().add(new SeniorCitizen(2, "Jude", "Jude44", 62,2000));
-       user.getUserList().add(new Admin("adminjude", "cabalhao"));
+        user.getUserList().add(new Adult(1, "Maire", "Maire44", 18, 500));
+        user.getUserList().add(new SeniorCitizen(2, "Jude", "Jude44", 62,2000));
+        user.getUserList().add(new Admin("adminjude", "cabalhao"));
 
 
         med.getMedicineList().add(new BodyPain(1, "Ibuprofen + Paracetamol", "Alaxan", "Body Pain", 8.25, 100));
