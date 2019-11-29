@@ -14,6 +14,7 @@ import java.util.Scanner;
 public class PharmacyApp {
 
     public static void main(String[] args) {
+       
         Scanner input = new Scanner(System.in);
         Transaction trans = new Transaction();
         User user = new User();
@@ -23,10 +24,10 @@ public class PharmacyApp {
         Medicine med = new Medicine();
         Orders order = new Orders();
         int count = 0;
+        int age = 0;
         user.getUserList().add(new Adult(1, "Maire", "Maire44", 18, 500));
-        user.getUserList().add(new SeniorCitizen(2, "Jude", "Jude44", 62,2000));
+        user.getUserList().add(new SeniorCitizen(2, "Jude", "Jude44", 62, 2000));
         user.getUserList().add(new Admin("adminjude", "cabalhao"));
-
 
         med.getMedicineList().add(new BodyPain(1, "Ibuprofen + Paracetamol", "Alaxan", "Body Pain", 8.25, 100));
         med.getMedicineList().add(new BodyPain(2, "Paracetamol Caffeine", "Rexidol", "Body Pain", 15.50, 75));
@@ -40,9 +41,7 @@ public class PharmacyApp {
         med.getMedicineList().add(new Cough(8, "Ambroxol", "Myracof", "Cough", 22, 50));
         med.getMedicineList().add(new Cough(9, "Ambroxol", "Expel OD", "Cough", 29, 50));
 
-
         order.getOrderList().add(new Orders(110, 1, 1, "Alaxan", 4, 33));
-        order.getOrderList().add(new Orders(11, 3, 2, "Rexidol", 6, 50));
         order.getOrderList().add(new Orders(91, 2, 11, "Biogesic", 6, 40));
 
         for (int i = 0; i < order.getOrderList().size(); i++) {
@@ -63,7 +62,6 @@ public class PharmacyApp {
                 }
             } else if (regOrLogIn == 1) {
                 User a = user.login(user);
-                
 
                 if (a instanceof Admin == true) {
                     while (true) {
@@ -73,7 +71,7 @@ public class PharmacyApp {
                         System.out.print("Enter your choice: ");
                         int option = input.nextInt();
                         if (option == 0) {
-                            Admin jude= new Admin();
+                            Admin jude = new Admin();
                             med.getMedicineList().add(jude.addMedicine(med));
                         } else if (option == 1) {
                             Admin jude = new Admin();
@@ -103,8 +101,8 @@ public class PharmacyApp {
                         }
                     }
                 } else {
-                    System.out.println("Register first!!");
-                    user.register(user);
+//                    System.out.println("Register first!!");
+//                    user.register(user);
                     System.out.println("You're logged in as " + a.getClass().getSimpleName() + "!");
                     System.out.println("-------------------------------------------------------------------------------");
                     System.out.println("Choose transaction:\n0. View balance \n1. Deposit balance\n2. Order\n3. View Medicines\n4. View Orders\n5. Change Password\n6. Pay Order\n7. Log out");
@@ -140,7 +138,7 @@ public class PharmacyApp {
                                         System.out.println("Successfully Ordered! ");
 
                                     } else if (a instanceof SeniorCitizen == true) {
-                                        order.getOrderList().add(new Orders(num, a.getId(), med.getMedicineList().get(i).getId(), med.getMedicineList().get(i).getBrandName(), qty, qty * (med.getMedicineList().get(i).getPrice() * 0.2)));
+                                        order.getOrderList().add(new Orders(num, a.getId(), med.getMedicineList().get(i).getId(), med.getMedicineList().get(i).getBrandName(), qty, qty * (med.getMedicineList().get(i).getPrice()*.8 )));
                                         System.out.println("Successfully Ordered! ");
 
                                     }
@@ -162,11 +160,11 @@ public class PharmacyApp {
                                 if (replaceMed.getId() == med.getMedicineList().get(i).getId()) {
                                     med.getMedicineList().get(i).setStock(replaceMed.getStock());
                                 }
-                            }              
-                            User replaceUser = new User(a.payOrder(a, order,inputs));
-                            System.out.println("Balance is: "+replaceUser.getMoney());
-                            for(int i = 0; i < a.getUserList().size();i++){
-                                if(replaceUser.getId() == a.getUserList().get(i).getId()){
+                            }
+                            User replaceUser = new User(a.payOrder(a, order, inputs));
+                            System.out.println("Balance is: " + replaceUser.getMoney());
+                            for (int i = 0; i < a.getUserList().size(); i++) {
+                                if (replaceUser.getId() == a.getUserList().get(i).getId()) {
                                     a.getUserList().get(i).setMoney(replaceUser.getMoney());
                                 }
                             }
@@ -191,3 +189,6 @@ public class PharmacyApp {
     }
 
 }
+
+
+
