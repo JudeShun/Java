@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -20,10 +20,6 @@ import javax.swing.JOptionPane;
  * @author 2ndyrGroupB
  */
 public class Login extends javax.swing.JFrame {
-
-    ArrayList<String> username = new ArrayList<>();
-    ArrayList<String> password = new ArrayList<>();
-//    ArrayList<Integer> age = new ArrayList<Integer>();
 
     public Login() {
         initComponents();
@@ -41,8 +37,8 @@ public class Login extends javax.swing.JFrame {
         jPasswordField1 = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        uname = new javax.swing.JTextField();
-        pass = new javax.swing.JPasswordField();
+        user = new javax.swing.JTextField();
+        password = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         submit = new javax.swing.JButton();
@@ -60,9 +56,9 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("********** LOG IN ***********");
 
-        pass.addActionListener(new java.awt.event.ActionListener() {
+        password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passActionPerformed(evt);
+                passwordActionPerformed(evt);
             }
         });
 
@@ -81,6 +77,11 @@ public class Login extends javax.swing.JFrame {
                 submitMouseClicked(evt);
             }
         });
+        submit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,8 +96,8 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(uname)
-                            .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))
+                            .addComponent(user)
+                            .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,11 +116,11 @@ public class Login extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(uname, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel3)
                 .addGap(4, 4, 4)
-                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(72, Short.MAX_VALUE))
@@ -171,68 +172,105 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_passActionPerformed
+    }//GEN-LAST:event_passwordActionPerformed
 
     private void submitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_submitMouseClicked
-        try {
-            String myDriver = "org.gjt.mm.mysql.Driver";
-            String myUrl = "jdbc:mysql://localhost/jude";
-            Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "");
-
-            // the mysql insert statement
-            //register is the register name for the table in the database
-            String query = " SELECT * FROM `register` WHERE `username= ?` and `password = ?`";
-
-            // create the mysql insert preparedstatement
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString(1, uname.getText());
-            preparedStmt.setString(2, pass.getText());
-
-            // execute the preparedstatement
-            preparedStmt.execute();
-
-            conn.close();
-            if (username.contains(uname.getText()) && password.contains(pass.getText())) {
-                JOptionPane.showMessageDialog(this, "You have successfully logged in");
-                Page page = new Page();
-                dispose();
-                page.setVisible(true);
-
-            } else if (!username.contains(uname.getText()) && password.contains(pass.getText())) {
-                JOptionPane.showMessageDialog(this, "Login Failed!");
-                uname.setText("");
-                pass.setText("");
-                uname.requestFocus();
-                Login login = new Login();
-                dispose();
-                login.setVisible(true);
-
-            } else if (username.contains(uname.getText()) && !password.contains(pass.getText())) {
-                JOptionPane.showMessageDialog(this, "Wrong Password/Username");
-                uname.setText("");
-                pass.setText("");
-                uname.requestFocus();
-                Login login = new Login();
-                dispose();
-                login.setVisible(true);
-            } else if (username.contains(uname.getText()) && !password.contains(uname.getText())) {
-                JOptionPane.showMessageDialog(this, "Wrong Password/Username");
-                uname.setText("");
-                pass.setText("");
-                uname.requestFocus();
-                Login login = new Login();
-                dispose();
-                login.setVisible(true);
-            }
-        } catch (Exception e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
-        }
-
+//        ResultSet rs;
+//        PreparedStatement ps;
+//        String username = user.getText();
+//        String password = String.valueOf(PassWord.getPassword());
+//
+//        Connection con = null;
+//
+//        try {
+//            String query = "SELECT * FROM `register` WHERE `username` = ? AND `password` = ?";
+//            Class.forName("com.mysql.jdbc.Driver");
+//            con = DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
+//            ps = con.prepareStatement(query);
+//
+//            ps.setString(1, username);
+//            ps.setString(2, password);
+//
+//            rs = ps.executeQuery();
+//
+//            if (rs.next()) {
+//                String pass = rs.getString("password");
+////                String user = rs.getString("username");
+//
+//                if (password.equals(pass)) {
+//                    JOptionPane.showMessageDialog(null, "You have successfully logged in!");
+////                        dispose();
+//                    Page page = new Page();
+//                    page.setVisible(true);
+//                    PassWord.setText("");
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Invalid password!", "Error", JOptionPane.ERROR_MESSAGE);
+////                    username.add(user);
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Invalid username!");
+//            }
+//
+////                 dispose();
+////            }
+//            ps.close();
+//            rs.close();
+//
+//        } catch (ClassNotFoundException | SQLException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//
+//        }
     }//GEN-LAST:event_submitMouseClicked
+
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        ResultSet rs;
+        PreparedStatement ps;
+        String username = user.getText();
+        String user_password = String.valueOf(password.getPassword());
+
+        Connection con = null;
+
+        try {
+            String query = "SELECT * FROM `register` WHERE `username` = ? AND `password` = ?";
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
+            ps = con.prepareStatement(query);
+
+            ps.setString(1, username);
+            ps.setString(2, user_password);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String pass = rs.getString("password");
+//                String user = rs.getString("username");
+
+                if (user_password.equals(pass)) {
+                    JOptionPane.showMessageDialog(null, "You have successfully logged in!");
+                    dispose();
+                    Page page = new Page();
+                    page.setVisible(true);
+                    password.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid password!", "Error", JOptionPane.ERROR_MESSAGE);
+//                    username.add(user);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid username!");
+            }
+
+//                 dispose();
+//            }
+            ps.close();
+            rs.close();
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,16 +286,24 @@ public class Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -277,8 +323,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField pass;
+    private javax.swing.JPasswordField password;
     private javax.swing.JButton submit;
-    private javax.swing.JTextField uname;
+    private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
 }

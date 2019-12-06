@@ -42,9 +42,9 @@ public class Registration extends javax.swing.JFrame {
         account2 = new javax.swing.JLabel();
         register = new javax.swing.JButton();
         Age = new javax.swing.JTextField();
-        username = new javax.swing.JTextField();
+        usern = new javax.swing.JTextField();
         confirm = new javax.swing.JPasswordField();
-        password = new javax.swing.JPasswordField();
+        pass = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -136,8 +136,8 @@ public class Registration extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Age, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                            .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                            .addComponent(password)))
+                            .addComponent(usern, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(pass)))
                     .addGroup(MainLayout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(register))
@@ -154,7 +154,7 @@ public class Registration extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(account1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usern, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +162,7 @@ public class Registration extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(account2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,15 +205,14 @@ public class Registration extends javax.swing.JFrame {
 
             // the mysql insert statement
             //register is the register name for the table in the database
-            String query = " insert into register(username,age,password,confirmpass)"
-                    + " values (?,?,?,?)";
+            String query = " insert into register(username,age,password)"
+                    + " values (?,?,?)";
 
             // create the mysql insert preparedstatement
             PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString(1, username.getText());
+            preparedStmt.setString(1, usern.getText());
             preparedStmt.setString(2, Age.getText());
-            preparedStmt.setString(3, password.getText());
-            preparedStmt.setString(4, confirm.getText());
+            preparedStmt.setString(3, pass.getText());
 
             // execute the preparedstatement
             preparedStmt.execute();
@@ -222,21 +221,12 @@ public class Registration extends javax.swing.JFrame {
             String age = Age.getText();
             int edad = Integer.parseInt(age);
             if (edad < 18) {
-                JOptionPane.showMessageDialog(null, "Sorry,too young to register!");
-            }
-            if ((edad > 18) && (edad < 60)) {
+                JOptionPane.showMessageDialog(null, "Sorry!Underage are not allowed to register!");
+            } else {
                 Login login = new Login();
                 dispose();
                 login.setVisible(true);
-                JOptionPane.showMessageDialog(this, "Data was successfully save!");
-                JOptionPane.showMessageDialog(this, "Registered as an Adult!");
-            }
-            if (edad >= 60) {
-                Login login = new Login();
-                dispose();
-                login.setVisible(true);
-                JOptionPane.showMessageDialog(this, "Data was successfully save!");
-                JOptionPane.showMessageDialog(this, "Registered as a Senior Citizen!");
+                JOptionPane.showMessageDialog(this, "This data is Saved!");
             }
         } catch (Exception e) {
             System.err.println("Got an exception!");
@@ -295,10 +285,10 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField password;
+    private javax.swing.JPasswordField pass;
     private javax.swing.JButton register;
     private javax.swing.JLabel tITLE;
-    private javax.swing.JTextField username;
+    private javax.swing.JTextField usern;
     // End of variables declaration//GEN-END:variables
 
     private void elseif() {

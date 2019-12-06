@@ -76,8 +76,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="uname" max="32767" attributes="0"/>
-                              <Component id="pass" pref="170" max="32767" attributes="0"/>
+                              <Component id="user" max="32767" attributes="0"/>
+                              <Component id="password" pref="170" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -104,11 +104,11 @@
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="uname" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="user" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                  <Component id="pass" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="password" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Component id="submit" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace pref="72" max="32767" attributes="0"/>
@@ -128,11 +128,11 @@
             <Property name="text" type="java.lang.String" value="********** LOG IN ***********"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="uname">
+        <Component class="javax.swing.JTextField" name="user">
         </Component>
-        <Component class="javax.swing.JPasswordField" name="pass">
+        <Component class="javax.swing.JPasswordField" name="password">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -166,6 +166,7 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="submitMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

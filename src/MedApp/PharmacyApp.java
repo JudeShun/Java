@@ -23,7 +23,7 @@ public class PharmacyApp {
         SeniorCitizen sc = new SeniorCitizen();
         Medicine med = new Medicine();
         Orders order = new Orders();
-        int count = 0;
+        int count = 0; 
         int age = 0;
         user.getUserList().add(new Adult(1, "Maire", "Maire44", 18, 500));
         user.getUserList().add(new SeniorCitizen(2, "Jude", "Jude44", 62, 2000));
