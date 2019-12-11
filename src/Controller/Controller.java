@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import View.*;
 
 /**
  *
@@ -19,10 +20,12 @@ import javax.swing.JOptionPane;
  */
 public class Controller {
 
-    Model model = new Model();
+//    Model model = new Model();
+    Order ord = new Order();
 
     public boolean register(String username, String age1, String password, String password1, String balance) {
         boolean finish = false;
+         Model model = new Model();
 
         try {
             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -65,8 +68,26 @@ public class Controller {
     }
 
     public int loginconfirm(String username, String password) {
+         Model model = new Model();
         int done = 200; // error
         return model.login(username, password); // call the method from the model
+    }
+
+    public boolean order(String username, String medId, String quantity) {
+        boolean finish = false;
+         Model model = new Model();
+        try {
+            int id = Integer.parseInt(medId);
+            try {
+                int qty = Integer.parseInt(quantity);
+                return finish = model.purchase(username, id, qty);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(ord, "Quantity should be a number!");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(ord, "ID should be a number!");
+        }
+        return finish;
     }
 
 }

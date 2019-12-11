@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.Controller;
+
 
 
 /**
@@ -16,8 +18,17 @@ public class Order extends javax.swing.JFrame {
     /**
      * Creates new form Order
      */
+    
+    String uname;
+//    Controller control = new Controller();
     public Order() {
         initComponents();
+    }
+    
+    public Order(String username){
+        initComponents();
+        uname = username;
+    
     }
 
     /**
@@ -40,6 +51,7 @@ public class Order extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         qty = new javax.swing.JTextField();
         order = new javax.swing.JButton();
+        back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +108,13 @@ public class Order extends javax.swing.JFrame {
             }
         });
 
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -122,7 +141,9 @@ public class Order extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 754, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(327, 327, 327)
-                        .addComponent(order, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(order, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -141,7 +162,9 @@ public class Order extends javax.swing.JFrame {
                     .addComponent(id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(qty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(order)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(order)
+                    .addComponent(back))
                 .addContainerGap())
         );
 
@@ -170,8 +193,26 @@ public class Order extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void orderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderMouseClicked
-       
+        String id1 = id.getText();
+        String quantity = qty.getText();
+            Controller control = new Controller();
+        
+        if(control.order(uname, id1, quantity)){
+            
+        
+        
+        }
+
+        
+        
+        
+        
     }//GEN-LAST:event_orderMouseClicked
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+     new Page().setVisible(true);
+     dispose(); 
+    }//GEN-LAST:event_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -202,6 +243,7 @@ public class Order extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Order().setVisible(true);
             }
@@ -209,6 +251,7 @@ public class Order extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

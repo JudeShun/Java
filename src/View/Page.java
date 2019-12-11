@@ -18,8 +18,17 @@ public class Page extends javax.swing.JFrame {
     /**
      * Creates new form Page
      */
+    
+    String uname;
+    
     public Page() {
         initComponents();
+    }
+    
+    public Page(String username){
+        initComponents();
+        uname = username;
+    
     }
 
     /**
@@ -237,8 +246,7 @@ public class Page extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewmedMouseClicked
 
     private void OrderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_OrderMouseClicked
-        Order ord = new Order();
-        ord.setVisible(true);
+        new Order(uname).setVisible(true);
         dispose();
     }//GEN-LAST:event_OrderMouseClicked
 

@@ -6,13 +6,17 @@
 package View;
 
 import View.Page;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import Controller.Controller;
 
 /**
  *
  * @author 2ndyrGroupB
  */
 public class Deposit extends javax.swing.JFrame {
+
+    private String username;
 
     /**
      * Creates new form Deposit
@@ -144,10 +148,16 @@ public class Deposit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void depositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositMouseClicked
-        JOptionPane.showMessageDialog(null, "Deposit Successfully!");
-        Page page = new Page();
-        page.setVisible(true);
-        dispose();
+//         String amount1 = dep.getText();
+////         String username = null;
+//         Statement stmt = null;
+//        
+//        Controller control = new Controller();
+//        if(control.deposit(username,amount1 ) == true){
+//            JOptionPane.showMessageDialog(rootPane, "Updated!");
+//            new Page().setVisible(true);
+//            dispose();
+//        }
     }//GEN-LAST:event_depositMouseClicked
 
     /**
