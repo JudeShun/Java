@@ -13,9 +13,18 @@ public class Balance extends javax.swing.JFrame {
 
     /**
      * Creates new form Balance
+     *
+     *
      */
+    int userId = 0;
+
     public Balance() {
         initComponents();
+    }
+
+    public Balance(int userId) {
+        initComponents();
+        this.userId = userId;
     }
 
     /**
@@ -50,6 +59,7 @@ public class Balance extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Your current balance is ");
 
+        bal.setEditable(false);
         bal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 balActionPerformed(evt);

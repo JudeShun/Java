@@ -18,17 +18,23 @@ public class Page extends javax.swing.JFrame {
     /**
      * Creates new form Page
      */
-    
     String uname;
-    
+    int userId;
+
     public Page() {
         initComponents();
     }
-    
-    public Page(String username){
+
+    public Page(String username) {
         initComponents();
         uname = username;
-    
+
+    }
+
+    public Page(int id) {
+        initComponents();
+        this.userId = id;
+
     }
 
     /**
@@ -227,7 +233,7 @@ public class Page extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BalanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalanceMouseClicked
-        Balance bal =new Balance();
+        Balance bal = new Balance(this.userId);
         bal.setVisible(true);
         dispose();
     }//GEN-LAST:event_BalanceMouseClicked
@@ -236,11 +242,11 @@ public class Page extends javax.swing.JFrame {
         Deposit dep = new Deposit();
         dep.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_depositMouseClicked
 
     private void ViewmedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ViewmedMouseClicked
-        Viewmed view = new Viewmed();
+        Viewmed view = new Viewmed(this.userId);
         view.setVisible(true);
         dispose();
     }//GEN-LAST:event_ViewmedMouseClicked
@@ -257,19 +263,19 @@ public class Page extends javax.swing.JFrame {
     }//GEN-LAST:event_addorderMouseClicked
 
     private void vieworderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vieworderMouseClicked
-        ViewOrder vieword= new ViewOrder();
+        ViewOrder vieword = new ViewOrder();
         vieword.setVisible(true);
         dispose();
     }//GEN-LAST:event_vieworderMouseClicked
 
     private void changepassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changepassMouseClicked
-        ChangePass changeps= new ChangePass();
+        ChangePass changeps = new ChangePass();
         changeps.setVisible(true);
         dispose();
     }//GEN-LAST:event_changepassMouseClicked
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
-        Home home  = new Home();
+        Home home = new Home();
         home.setVisible(true);
         dispose();
     }//GEN-LAST:event_logoutMouseClicked

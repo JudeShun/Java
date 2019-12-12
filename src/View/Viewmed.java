@@ -6,16 +6,29 @@
 package View;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import Controller.Controller;
+
 /**
  *
  * @author 2ndyrGroupB
  */
 public class Viewmed extends javax.swing.JFrame {
-
-   
-    public Viewmed() {
+    
+    int customer_id = 0;
+    
+    /**
+     *
+     * @param user_id
+     */
+    
+    public Viewmed(int user_id) {
+        
         initComponents();
+        customer_id = user_id;
+        
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connectionToDB = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
@@ -107,10 +120,7 @@ public class Viewmed extends javax.swing.JFrame {
                 .addGap(94, 94, 94)
                 .addComponent(back)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,16 +182,48 @@ public class Viewmed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void orderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orderMouseClicked
-        Order order = new Order();
-        order.setVisible(true);
-        dispose();
+//        Order order = new Order();
+//        order.setVisible(true);
+//        dispose();
+        JTextField med_id = new JTextField();
+        JTextField med_qty = new JTextField();
+        Object[] message = {
+            "Medicine id:", med_id,
+            "Quantity:", med_qty
+        };
+        JOptionPane.showConfirmDialog(null, message, "Order Medicine", JOptionPane.OK_CANCEL_OPTION);
+
+        String id = med_id.getText();
+        String qty = med_qty.getText();
+        
+        Controller controller = new Controller();
+        
+        controller.CreateOrder(id, qty, this.customer_id);
+        
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connectionToDB = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
+            PreparedStatement preparedStatement = connectionToDB.prepareStatement("SELECT * FROM `tblmedicine`");
+            ResultSet resultSetForFullTable = preparedStatement.executeQuery();
+            DefaultTableModel tm = (DefaultTableModel) viewT.getModel();
+            tm.setRowCount(0);
+            while (resultSetForFullTable.next()) {
+                Object table[] = {resultSetForFullTable.getInt("id"), resultSetForFullTable.getString("brandname"), resultSetForFullTable.getString("genericname"), resultSetForFullTable.getDouble("price"), resultSetForFullTable.getInt("stock"), resultSetForFullTable.getString("type")};
+                tm.addRow(table);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        
+
     }//GEN-LAST:event_orderMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
         Page page = new Page();
         page.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_backMouseClicked
 
     /**
@@ -214,7 +256,7 @@ public class Viewmed extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Viewmed().setVisible(true);
+                new Viewmed(0).setVisible(true);
             }
         });
     }

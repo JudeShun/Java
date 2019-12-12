@@ -17,6 +17,7 @@ import Controller.Controller;
 public class Login extends javax.swing.JFrame {
 
     Controller control = new Controller();
+    int userId = 0;
 
     public Login() {
         initComponents();
@@ -38,7 +39,8 @@ public class Login extends javax.swing.JFrame {
         userp = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        login = new javax.swing.JButton();
+        cancel = new javax.swing.JButton();
+        login1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
 
@@ -67,16 +69,29 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
-        login.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        login.setText("Login");
-        login.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loginMouseClicked(evt);
+                cancelMouseClicked(evt);
             }
         });
-        login.addActionListener(new java.awt.event.ActionListener() {
+        cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginActionPerformed(evt);
+                cancelActionPerformed(evt);
+            }
+        });
+
+        login1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        login1.setText("Login");
+        login1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                login1MouseClicked(evt);
+            }
+        });
+        login1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                login1ActionPerformed(evt);
             }
         });
 
@@ -84,10 +99,6 @@ public class Login extends javax.swing.JFrame {
         user.setLayout(userLayout);
         userLayout.setHorizontalGroup(
             userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLayout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
             .addGroup(userLayout.createSequentialGroup()
                 .addGroup(userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(usern, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -99,11 +110,18 @@ public class Login extends javax.swing.JFrame {
                             .addGap(59, 59, 59)
                             .addGroup(userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(userLayout.createSequentialGroup()
-                            .addGap(167, 167, 167)
-                            .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, userLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(userLayout.createSequentialGroup()
+                        .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56))
         );
         userLayout.setVerticalGroup(
             userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,9 +136,11 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(4, 4, 4)
                 .addComponent(userp, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
@@ -173,29 +193,39 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_userpActionPerformed
 
-    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
      String username = usern.getText();
         String password = userp.getText();
 
 //        Controller acc = new Controller();
+        int [] resp = control.loginconfirm(username, password);
 
-        if (control.loginconfirm(username, password) == 500) {
+        if (resp[0] == 500) {
             this.setVisible(false);
             new Adminpage().setVisible(true);
             JOptionPane.showMessageDialog(rootPane, "Successfully Logged in as an Admin!");
-        } else if (control.loginconfirm(username, password) == 600) {
+        } else if (resp[0] == 600) {
             this.setVisible(false);
-            new Page().setVisible(true);
+            new Page(resp[1]).setVisible(true);
             JOptionPane.showMessageDialog(rootPane, "Successfully logged in as a Customer!");
         } else {
             JOptionPane.showMessageDialog(rootPane, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_loginMouseClicked
+    }//GEN-LAST:event_cancelMouseClicked
 
-    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        new Home().setVisible(true);
+        dispose();
 
+    }//GEN-LAST:event_cancelActionPerformed
 
-    }//GEN-LAST:event_loginActionPerformed
+    private void login1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_login1MouseClicked
+
+    private void login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_login1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -254,12 +284,13 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Title;
+    private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JButton login;
+    private javax.swing.JButton login1;
     private javax.swing.JPanel user;
     private javax.swing.JTextField usern;
     private javax.swing.JPasswordField userp;

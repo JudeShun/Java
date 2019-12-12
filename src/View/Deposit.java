@@ -5,6 +5,8 @@
  */
 package View;
 
+
+
 import View.Page;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -40,7 +42,8 @@ public class Deposit extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         dep = new javax.swing.JTextField();
-        deposit = new javax.swing.JButton();
+        back = new javax.swing.JButton();
+        deposit1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -58,11 +61,19 @@ public class Deposit extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Amount to be deposit:");
 
-        deposit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        deposit.setText("Deposit");
-        deposit.addMouseListener(new java.awt.event.MouseAdapter() {
+        back.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                depositMouseClicked(evt);
+                backMouseClicked(evt);
+            }
+        });
+
+        deposit1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        deposit1.setText("Deposit");
+        deposit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deposit1MouseClicked(evt);
             }
         });
 
@@ -70,10 +81,6 @@ public class Deposit extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -81,11 +88,22 @@ public class Deposit extends javax.swing.JFrame {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(151, 151, 151)
-                        .addComponent(dep, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(deposit)))
+                        .addComponent(dep, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(97, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(154, 154, 154))))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(101, 101, 101)
+                    .addComponent(deposit1)
+                    .addContainerGap(281, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +114,14 @@ public class Deposit extends javax.swing.JFrame {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(dep, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(deposit, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addGap(55, 55, 55)
+                .addComponent(back, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(106, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(220, Short.MAX_VALUE)
+                    .addComponent(deposit1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(107, 107, 107)))
         );
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
@@ -147,7 +170,9 @@ public class Deposit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void depositMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_depositMouseClicked
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        new Page().setVisible(true);
+        dispose();
 //         String amount1 = dep.getText();
 ////         String username = null;
 //         Statement stmt = null;
@@ -158,7 +183,11 @@ public class Deposit extends javax.swing.JFrame {
 //            new Page().setVisible(true);
 //            dispose();
 //        }
-    }//GEN-LAST:event_depositMouseClicked
+    }//GEN-LAST:event_backMouseClicked
+
+    private void deposit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deposit1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deposit1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -196,10 +225,11 @@ public class Deposit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.ButtonGroup buttonGroup1;
     private java.awt.Checkbox checkbox1;
     private javax.swing.JTextField dep;
-    private javax.swing.JButton deposit;
+    private javax.swing.JButton deposit1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

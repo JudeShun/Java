@@ -1,5 +1,11 @@
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,8 +22,23 @@ public class AdViewOrder extends javax.swing.JFrame {
     /**
      * Creates new form ViewOrder
      */
-    public AdViewOrder() {
+     public AdViewOrder() {
         initComponents();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connectionToDB = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
+            PreparedStatement preparedStatement = connectionToDB.prepareStatement("SELECT * FROM `tblorder`");
+            ResultSet resultSetForFullTable = preparedStatement.executeQuery();
+            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+            tm.setRowCount(0);
+            while (resultSetForFullTable.next()) {
+                Object table[] = { resultSetForFullTable.getString("ordermed"), resultSetForFullTable.getInt("quantity"), resultSetForFullTable.getDouble("amount")};
+                tm.addRow(table);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
     }
 
     /**
@@ -33,6 +54,9 @@ public class AdViewOrder extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        back = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +70,7 @@ public class AdViewOrder extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(144, 144, 144))
         );
@@ -60,25 +84,76 @@ public class AdViewOrder extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("\"Best for your needs!\"");
+        jLabel2.setText("*********** CUSTOMER'S ORDER *********");
+
+        back.setText("Back");
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backMouseClicked(evt);
+            }
+        });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Brandname", "Quantity", "Amount"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addComponent(jLabel2)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addComponent(back)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel2)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(back)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,6 +176,11 @@ public class AdViewOrder extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
+        new Adminpage().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backMouseClicked
 
     /**
      * @param args the command line arguments
@@ -139,9 +219,12 @@ public class AdViewOrder extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

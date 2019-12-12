@@ -49,6 +49,7 @@ public class Registration extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         account3 = new javax.swing.JLabel();
         Bal = new javax.swing.JTextField();
+        cancel = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,7 +99,7 @@ public class Registration extends javax.swing.JFrame {
         account2.setForeground(new java.awt.Color(255, 255, 255));
         account2.setText("Password");
 
-        register.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        register.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         register.setText("Register");
         register.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -128,6 +129,19 @@ public class Registration extends javax.swing.JFrame {
         Bal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BalActionPerformed(evt);
+            }
+        });
+
+        cancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
             }
         });
 
@@ -161,7 +175,11 @@ public class Registration extends javax.swing.JFrame {
                         .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(register)
+                            .addGroup(MainLayout.createSequentialGroup()
+                                .addComponent(register)
+                                .addGap(18, 18, 18)
+                                .addComponent(cancel)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(Bal))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -191,7 +209,9 @@ public class Registration extends javax.swing.JFrame {
                     .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Bal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addComponent(register)
+                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(register)
+                    .addComponent(cancel))
                 .addGap(40, 40, 40))
         );
 
@@ -291,6 +311,15 @@ public class Registration extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BalActionPerformed
 
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+       new Home().setVisible(true);
+       dispose();
+    }//GEN-LAST:event_cancelMouseClicked
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -338,6 +367,7 @@ public class Registration extends javax.swing.JFrame {
     private javax.swing.JLabel account1;
     private javax.swing.JLabel account2;
     private javax.swing.JLabel account3;
+    private javax.swing.JButton cancel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

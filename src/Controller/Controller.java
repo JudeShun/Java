@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import Model.Model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,6 +12,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import View.*;
+import Model.Model;
+import static java.lang.Integer.parseInt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,11 +24,9 @@ import View.*;
 public class Controller {
 
     Order ord = new Order();
-    Model model = new Model();
 
     public boolean register(String username, String age1, String password, String password1, String balance) {
         boolean finish = false;
-         
 
         try {
             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -47,31 +48,64 @@ public class Controller {
                                     double money = Double.parseDouble(balance);
                                     return finish = model.register(username, age, password, money);
                                 } catch (NumberFormatException e) {
-                                    JOptionPane.showMessageDialog(null, "Money should be a number!");
+                                    System.out.println(e);
                                 }
                             } else {
                                 JOptionPane.showMessageDialog(null, "Password do not match!");
                             }
                         } catch (Exception e) {
+                            System.out.println(e);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Minors are not allowed to register!");
                     }
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, "Age should only be a number!");
+                    System.out.println(e);
                 }
             }
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error connecting to database!");
+            System.out.println(e);
         }
         return finish;
     }
 
-    public int loginconfirm(String username, String password) {
+    public int[] loginconfirm(String username, String password) {
         int done = 200; // error
         return model.login(username, password); // call the method from the model
     }
 //   -----------------------------------------------------------------------------
+
+    Model model = new Model();
+
+    public void CreateOrder(String id, String quantity, int customer_id) {
+        if (id.equals("") || quantity.equals("") || String.valueOf(customer_id).equals("")) {
+            JOptionPane.showMessageDialog(null, "Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            model.purchaseMedicine(parseInt(id), parseInt(quantity), customer_id);
+        }
+    }
+
+    public double getBalance(int userId) {
+        double balance = 0;
+        Connection conn = null;
+        try {
+            String myDriver = "org.gjt.mm.mysql.Driver";
+            String myUrl = "jdbc:mysql://localhost/jude";
+            Class.forName(myDriver);
+            conn = DriverManager.getConnection(myUrl, "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT balance FROM `tblcustomer` WHERE id='" + userId + "'");
+            if (rs.next()) {
+                balance = rs.getDouble("balance");
+            }
+            conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return balance;
+    }
 
 //    public boolean order(String username, String medId, String quantity) {
 //        boolean finish = false;
@@ -133,5 +167,4 @@ public class Controller {
 //        return success;
 //    }
 //    --------------------------------------------------------------------------------------------------
-
 }

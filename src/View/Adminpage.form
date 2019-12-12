@@ -135,6 +135,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Log Out"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoutMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
@@ -151,6 +154,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Remove Medicine"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="remove1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

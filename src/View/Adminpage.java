@@ -65,12 +65,22 @@ public class Adminpage extends javax.swing.JFrame {
         });
 
         logout.setText("Log Out");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("\"Best for your needs!\"");
 
         remove1.setText("Remove Medicine");
+        remove1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                remove1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -171,9 +181,21 @@ public class Adminpage extends javax.swing.JFrame {
     }//GEN-LAST:event_vieworderMouseClicked
 
     private void viewmedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewmedMouseClicked
-      new Viewmed().setVisible(true);
+      new viewmedAdmin().setVisible(true);
       this.dispose();
     }//GEN-LAST:event_viewmedMouseClicked
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        Home home = new Home();
+        home.setVisible(true);
+    }//GEN-LAST:event_logoutMouseClicked
+
+    private void remove1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove1MouseClicked
+        new RemoveMed().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_remove1MouseClicked
 
     /**
      * @param args the command line arguments

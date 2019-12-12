@@ -66,11 +66,6 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="94" max="32767" attributes="0"/>
-                  <Component id="jLabel1" min="-2" pref="279" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-              </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="usern" min="-2" pref="170" max="-2" attributes="0"/>
@@ -86,13 +81,22 @@
                                   <Component id="jLabel3" min="-2" pref="67" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
-                              <Component id="login" min="-2" pref="94" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="login1" min="-2" pref="94" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="cancel" min="-2" pref="94" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="jLabel1" min="-2" pref="279" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -109,9 +113,12 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Component id="userp" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="login" min="-2" pref="36" max="-2" attributes="0"/>
-                  <EmptySpace pref="72" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cancel" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="login1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="59" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -157,7 +164,19 @@
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="login">
+        <Component class="javax.swing.JButton" name="cancel">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="12" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Cancel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="login1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="1"/>
@@ -165,8 +184,8 @@
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="login1MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="login1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

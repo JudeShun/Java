@@ -12,13 +12,12 @@ import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
 
-
 /**
  *
  * @author 2ndyrGroupB
  */
 public class Order extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Order
      */
@@ -215,7 +214,7 @@ public class Order extends javax.swing.JFrame {
 
             // the mysql insert statement
             //register is the register name for the table in the database
-            String query = " insert into tblorder(genericname,brandname,price,stock,type)"
+            String query = "insert into tblorder(genericname,brandname,price,stock,type)"
                     + " values (?,?,?,?,?)";
 
             // create the mysql insert preparedstatement
@@ -226,7 +225,7 @@ public class Order extends javax.swing.JFrame {
 
             // execute the preparedstatement
             preparedStmt.execute();
-            JOptionPane.showMessageDialog(null, "New medicine is added!");
+            JOptionPane.showMessageDialog(null, "!");
             Adminpage ad = new Adminpage();
             ad.setVisible(true);
             dispose();

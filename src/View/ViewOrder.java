@@ -5,6 +5,17 @@
  */
 package View;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import Controller.Controller;
+
 /**
  *
  * @author 2ndyrGroupB
@@ -16,6 +27,21 @@ public class ViewOrder extends javax.swing.JFrame {
      */
     public ViewOrder() {
         initComponents();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connectionToDB = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
+            PreparedStatement preparedStatement = connectionToDB.prepareStatement("SELECT * FROM `tblorder`");
+            ResultSet resultSetForFullTable = preparedStatement.executeQuery();
+            DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
+            tm.setRowCount(0);
+            while (resultSetForFullTable.next()) {
+                Object table[] = { resultSetForFullTable.getString("ordermed"), resultSetForFullTable.getInt("quantity"), resultSetForFullTable.getDouble("amount")};
+                tm.addRow(table);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
     }
 
     /**
@@ -32,9 +58,9 @@ public class ViewOrder extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         back = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,20 +100,49 @@ public class ViewOrder extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("********** VIEW ORDER **********");
 
-        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("| Order ID |  User ID  |    Order Item     | Quantity   | Amount\n__________________________________________________________________");
-        jScrollPane1.setViewportView(jTextArea1);
-
         back.setText("Back");
         back.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backMouseClicked(evt);
             }
         });
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Brandname", "Quantity", "Amount"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -99,11 +154,11 @@ public class ViewOrder extends javax.swing.JFrame {
                         .addGap(124, 124, 124)
                         .addComponent(jLabel3))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(252, 252, 252)
+                        .addComponent(back))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(back)))
+                        .addGap(105, 105, 105)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -111,11 +166,11 @@ public class ViewOrder extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel3)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addGap(48, 48, 48)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(back)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,7 +242,7 @@ public class ViewOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
