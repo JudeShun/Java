@@ -20,12 +20,12 @@ import View.*;
  */
 public class Controller {
 
-//    Model model = new Model();
     Order ord = new Order();
+    Model model = new Model();
 
     public boolean register(String username, String age1, String password, String password1, String balance) {
         boolean finish = false;
-         Model model = new Model();
+         
 
         try {
             String myDriver = "org.gjt.mm.mysql.Driver";
@@ -68,26 +68,70 @@ public class Controller {
     }
 
     public int loginconfirm(String username, String password) {
-         Model model = new Model();
         int done = 200; // error
         return model.login(username, password); // call the method from the model
     }
+//   -----------------------------------------------------------------------------
 
-    public boolean order(String username, String medId, String quantity) {
-        boolean finish = false;
-         Model model = new Model();
-        try {
-            int id = Integer.parseInt(medId);
-            try {
-                int qty = Integer.parseInt(quantity);
-                return finish = model.purchase(username, id, qty);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(ord, "Quantity should be a number!");
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(ord, "ID should be a number!");
-        }
-        return finish;
-    }
+//    public boolean order(String username, String medId, String quantity) {
+//        boolean finish = false;
+//         Model model = new Model();
+//        try {
+//            int id = Integer.parseInt(medId);
+//            try {
+//                int qty = Integer.parseInt(quantity);
+//                return finish = model.purchase(username, id, qty);
+//            } catch (NumberFormatException e) {
+//                JOptionPane.showMessageDialog(ord, "Quantity should be a number!");
+//            }
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(ord, "ID should be a number!");
+//        }
+//        return finish;
+//    }
+//    -------------------------------------------------------------------------------
+//       public boolean order(String uname, String id2, String quantity) {
+//        boolean success = false;
+//        boolean exist = false;
+//
+//        try {
+//
+//            int qty = Integer.parseInt(quantity);
+//            try {
+//                int id = Integer.parseInt(id2);
+//                try {
+//                    Class.forName("com.mysql.jdbc.Driver");
+//                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
+//                    Statement stmt = con.createStatement();
+//                    ResultSet rs = stmt.executeQuery("SELECT * FROM `tblmedicine` WHERE id='" + id + "'");
+//
+//                    while (rs.next()) {
+//                        int stock = rs.getInt("stock");
+//                        double price = rs.getDouble("price");
+//                        if (rs.getInt("id") == id) {
+//                            exist = true;
+//                            return success = model.order(uname, id, qty);
+//                        }
+//                        break;
+//                    }
+//                    if (exist == false) {
+//                        JOptionPane.showMessageDialog(null, "Medicine do not exist!", "Error", JOptionPane.ERROR_MESSAGE);
+//                    }
+//
+//                } catch (NumberFormatException e) {
+//                    JOptionPane.showMessageDialog(null, "ID should be a number!", "Error", JOptionPane.ERROR_MESSAGE);
+//                }
+//
+//            } catch (ClassNotFoundException | SQLException e) {
+//                JOptionPane.showMessageDialog(null, "Error connecting to database!", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//
+//        } catch (NumberFormatException e) {
+//            JOptionPane.showMessageDialog(null, "Quantity should be a number!", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//
+//        return success;
+//    }
+//    --------------------------------------------------------------------------------------------------
 
 }
