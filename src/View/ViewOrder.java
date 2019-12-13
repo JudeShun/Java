@@ -35,11 +35,12 @@ public class ViewOrder extends javax.swing.JFrame {
             DefaultTableModel tm = (DefaultTableModel) jTable1.getModel();
             tm.setRowCount(0);
             while (resultSetForFullTable.next()) {
+//                Object table[] = { resultSetForFullTable.getString("ordermed"), resultSetForFullTable.getInt("quantity"), discount};
                 Object table[] = { resultSetForFullTable.getString("ordermed"), resultSetForFullTable.getInt("quantity"), resultSetForFullTable.getDouble("amount")};
                 tm.addRow(table);
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
         
     }
@@ -195,9 +196,8 @@ public class ViewOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-        Order order = new Order();
-        order.setVisible(true);
-        dispose();
+      new Page().setVisible(true);
+      dispose();
     }//GEN-LAST:event_backMouseClicked
 
     /**

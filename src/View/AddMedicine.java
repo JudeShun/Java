@@ -284,6 +284,7 @@ public class AddMedicine extends javax.swing.JFrame {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
         }
+    
     }//GEN-LAST:event_addActionPerformed
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed

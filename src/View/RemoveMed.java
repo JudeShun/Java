@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.Controller;
 import View.Adminpage;
 import View.Login;
 import java.sql.Connection;
@@ -42,6 +43,7 @@ public class RemoveMed extends javax.swing.JFrame {
         idF = new javax.swing.JTextField();
         removemed = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        cancel = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -75,6 +77,13 @@ public class RemoveMed extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("********* REMOVE *********");
 
+        cancel.setText("Cancel");
+        cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,17 +92,18 @@ public class RemoveMed extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(175, 175, 175)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(idF, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(removemed))))
+                        .addComponent(idF, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(90, 90, 90)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(159, 159, 159)
+                        .addComponent(removemed)
+                        .addGap(32, 32, 32)
+                        .addComponent(cancel)))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -106,7 +116,9 @@ public class RemoveMed extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(idF, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
-                .addComponent(removemed)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removemed)
+                    .addComponent(cancel))
                 .addGap(88, 88, 88))
         );
 
@@ -155,26 +167,23 @@ public class RemoveMed extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void removemedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removemedMouseClicked
-        
-        try {
-            String id=idF.getText();
-             int newID = Integer.parseInt(id);
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
-            Statement stmt = con.createStatement();
-            String sql = "DELETE FROM `tblmedicine` WHERE id='" + newID + "'";    
-            stmt.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null, "Medicine was successfully removed!");
-            Adminpage admin= new Adminpage();
-            admin.setVisible(true);
+
+        String ID = idF.getText();
+
+        Controller c = new Controller();
+        if (c.removeMedicine(ID) == true) {
+            JOptionPane.showMessageDialog(rootPane, "Remove Successfully");
+            Adminpage a = new Adminpage();
+            a.setVisible(false);
             dispose();
-            con.close();
-        } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error connecting to database!");
         }
-    
-  
+        this.setVisible(true);
     }//GEN-LAST:event_removemedMouseClicked
+
+    private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
+      new Adminpage().setVisible(true);
+      dispose();
+    }//GEN-LAST:event_cancelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -212,6 +221,7 @@ public class RemoveMed extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancel;
     private javax.swing.JTextField idF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

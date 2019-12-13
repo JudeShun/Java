@@ -184,9 +184,8 @@ public class Page extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewmedMouseClicked
 
     private void addorderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addorderMouseClicked
-       Viewmed view = new  Viewmed();
-        view.setVisible(true);
-        dispose();
+      new Viewmed().setVisible(true);
+      dispose();
     }//GEN-LAST:event_addorderMouseClicked
 
     private void vieworderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_vieworderMouseClicked

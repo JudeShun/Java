@@ -16,21 +16,22 @@ import Controller.Controller;
  * @author 2ndyrGroupB
  */
 public class Viewmed extends javax.swing.JFrame {
-    
+
     int customer_id = 0;
-    
+
     /**
      *
      * @param user_id
      */
-    public Viewmed(){
+    public Viewmed() {
         initComponents();
     }
+
     public Viewmed(int user_id) {
-        
+
         initComponents();
         customer_id = user_id;
-        
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connectionToDB = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
@@ -197,11 +198,11 @@ public class Viewmed extends javax.swing.JFrame {
 
         String id = med_id.getText();
         String qty = med_qty.getText();
-        
+
         Controller controller = new Controller();
-        
+
         controller.CreateOrder(id, qty, this.customer_id);
-        
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connectionToDB = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
@@ -213,11 +214,11 @@ public class Viewmed extends javax.swing.JFrame {
                 Object table[] = {resultSetForFullTable.getInt("id"), resultSetForFullTable.getString("brandname"), resultSetForFullTable.getString("genericname"), resultSetForFullTable.getDouble("price"), resultSetForFullTable.getInt("stock"), resultSetForFullTable.getString("type")};
                 tm.addRow(table);
             }
+            viewT.setModel(tm);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        
+
 
     }//GEN-LAST:event_orderMouseClicked
 

@@ -85,60 +85,60 @@ public class Model {
     }
 //   ----------------------------------------------------------------------------------------------
 
-    public void purchaseMedicine(int id, int quantity, int customer_id) {
-
-        Statement stmtSelect = null;
-        Connection conn = null;
-        Statement stmtDelete = null;
-        Statement stmtUpdate = null;
-        Statement stmtInsert = null;
-        double amount_paid = 0;
-        String deleteQuery;
-        String updateQuery;
-        String selectMed;
-        String insertPurchasedMed;
-        selectMed = "SELECT id,stock,price,brandname from `tblmedicine` WHERE id = '" + id + "'";
-        deleteQuery = "DELETE FROM `tblmedicine` WHERE brandnaidme = '" + id + "'";
-        try {
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            stmtSelect = conn.createStatement();
-            ResultSet select = stmtSelect.executeQuery(selectMed);
-            while (select.next()) {
-                int stock = select.getInt("stock");
-                double price = select.getDouble("price");
-                amount_paid = quantity * price;
-                String brandname = select.getString("brandname");
-                if (stock < quantity) {
-                    System.out.println("to order");
-                    stmtDelete = conn.createStatement();
-                    stmtDelete.executeUpdate(deleteQuery);
+//    public void purchaseMedicine(int id, int quantity, int customer_id) {
+//
+//        Statement stmtSelect = null;
+//        Connection conn = null;
+//        Statement stmtDelete = null;
+//        Statement stmtUpdate = null;
+//        Statement stmtInsert = null;
+//        double amount_paid = 0;
+//        String deleteQuery;
+//        String updateQuery;
+//        String selectMed;
+//        String insertPurchasedMed;
+//        selectMed = "SELECT id,stock,price,brandname from `tblmedicine` WHERE id = '" + id + "'";
+//        deleteQuery = "DELETE FROM `tblmedicine` WHERE brandnaidme = '" + id + "'";
+//        try {
+//            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//            stmtSelect = conn.createStatement();
+//            ResultSet select = stmtSelect.executeQuery(selectMed);
+//            while (select.next()) {
+//                int stock = select.getInt("stock");
+//                double price = select.getDouble("price");
+//                amount_paid = quantity * price;
+//                String brandname = select.getString("brandname");
+//                if (stock < quantity) {
+//                    System.out.println("to order");
+//                    stmtDelete = conn.createStatement();
+//                    stmtDelete.executeUpdate(deleteQuery);
 //                    insertPurchasedMed = String.format("INSERT INTO `tblorder` (user id,ordermed,quantity,amount)"
 //                            + "VALUES ('%d','%s','%d','%f')", customer_id, medicine, quantity, amount_paid);
-                    insertPurchasedMed = "INSERT INTO `tblorder` (`user id`, `ordermed`, `quantity`, `amount`) VALUES ('" + this.userId + "','" + brandname + "','" + quantity + "','" + amount_paid + "')";
-                    stmtInsert = conn.createStatement();
-                    int orderId = stmtInsert.executeUpdate(insertPurchasedMed, Statement.RETURN_GENERATED_KEYS);
-                    stmtInsert = conn.createStatement();
-                    String insertTransaction = String.format("INSERT INTO `tbltransactions`(`orderId`) VALUES (%d)", orderId);
-                    int transId = stmtInsert.executeUpdate(insertTransaction, Statement.RETURN_GENERATED_KEYS);
-                    System.out.println(orderId);
-                    System.out.println(transId);
-
-                } else if (stock >= quantity) {
-                    int upqty = stock - quantity;
-                    updateQuery = "UPDATE `tblmedicine` SET stock = '" + upqty + "' WHERE id = '" + id + "'";
-                    stmtUpdate = conn.createStatement();
-                    stmtUpdate.executeUpdate(updateQuery);
-//                    insertPurchasedMed = String.format("INSERT INTO `tblorder` (user id,ordermed,quantity,amount)"
-//                            + "VALUES ('%d','%s','%d','%f')", customer_id, brandname, quantity, amount_paid);
-                    insertPurchasedMed = "INSERT INTO `tblorder` (`user id`, `ordermed`, `quantity`, `amount`) VALUES ('" + customer_id + "','" + brandname + "','" + quantity + "','" + amount_paid + "')";
-                    stmtInsert = conn.createStatement();
-                    String selectMax = "SELECT id from `tblorder`";
-                    stmtSelect = conn.createStatement();
-                    select = stmtSelect.executeQuery(selectMax);
-                    int maxId = 0;
-                    while (select.next()) {
-                        maxId = select.getInt("id") + 1;
-                    }
+//                    insertPurchasedMed = "INSERT INTO `tblorder` (`user id`, `ordermed`, `quantity`, `amount`) VALUES ('" + this.userId + "','" + brandname + "','" + quantity + "','" + amount_paid + "')";
+//                    stmtInsert = conn.createStatement();
+//                    int orderId = stmtInsert.executeUpdate(insertPurchasedMed, Statement.RETURN_GENERATED_KEYS);
+//                    stmtInsert = conn.createStatement();
+//                    String insertTransaction = String.format("INSERT INTO `tbltransactions`(`orderId`) VALUES (%d)", orderId);
+//                    int transId = stmtInsert.executeUpdate(insertTransaction, Statement.RETURN_GENERATED_KEYS);
+//                    System.out.println(orderId);
+//                    System.out.println(transId);
+//
+//                } else if (stock >= quantity) {
+//                    int upqty = stock - quantity;
+//                    updateQuery = "UPDATE `tblmedicine` SET stock = '" + upqty + "' WHERE id = '" + id + "'";
+//                    stmtUpdate = conn.createStatement();
+//                    stmtUpdate.executeUpdate(updateQuery);
+////                    insertPurchasedMed = String.format("INSERT INTO `tblorder` (user id,ordermed,quantity,amount)"
+////                            + "VALUES ('%d','%s','%d','%f')", customer_id, brandname, quantity, amount_paid);
+//                    insertPurchasedMed = "INSERT INTO `tblorder` (`user id`, `ordermed`, `quantity`, `amount`) VALUES ('" + customer_id + "','" + brandname + "','" + quantity + "','" + amount_paid + "')";
+//                    stmtInsert = conn.createStatement();
+//                    String selectMax = "SELECT id from `tblorder`";
+//                    stmtSelect = conn.createStatement();
+//                    select = stmtSelect.executeQuery(selectMax);
+//                    int maxId = 0;
+//                    while (select.next()) {
+//                        maxId = select.getInt("id") + 1;
+//                    }
 
 //                    select balance id = this.userId
 //                    balance - amount_paid
@@ -151,37 +151,39 @@ public class Model {
 //                    stmtUpdate = conn.createStatement();
 //                    stmtUpdate.executeUpdate(updateBalance);
 
-                    stmtInsert.executeUpdate(insertPurchasedMed, Statement.RETURN_GENERATED_KEYS);
-                    stmtInsert = conn.createStatement();
-                    String insertTransaction = String.format("INSERT INTO `tbltransactions`(`orderId`) VALUES (%d)", maxId);
-                    stmtInsert.executeUpdate(insertTransaction, Statement.RETURN_GENERATED_KEYS);
-                    System.out.println(maxId);
-                }
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-            System.out.println(ex.getMessage());
-        }
-    }
+//                    stmtInsert.executeUpdate(insertPurchasedMed, Statement.RETURN_GENERATED_KEYS);
+//                    stmtInsert = conn.createStatement();
+//                    String insertTransaction = String.format("INSERT INTO `tbltransactions`(`orderId`) VALUES (%d)", maxId);
+//                    stmtInsert.executeUpdate(insertTransaction, Statement.RETURN_GENERATED_KEYS);
+//                    System.out.println(maxId);
+//                }
+//            }
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//            System.out.println(ex.getMessage());
+//        }
+//    }
 
     public boolean purchase(String username, int id, int qty) {
         boolean finish = false;
-
+        System.out.println("hoy");
         try {
+            System.out.println("hey");
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM `tblmedicine` WHERE id='" + id + "'");
 
             while (rs.next()) {
+                System.out.println("hay");
                 int stock = rs.getInt("stock");
                 double price = rs.getDouble("price");
                 if (rs.getString("id").equals(id)) {
                     ResultSet rs1 = stmt.executeQuery("SELECT * FROM `tblcustomer`");
                     while (rs1.next()) {
                         int age = rs1.getInt("age");
-                        double balance = rs1.getDouble("money");
+                        double balance = rs1.getDouble("amount");
                         double balanceLeftSenior = balance - ((stock * price) * .80);
                         double balanceLeftAdult = balance - (stock * price);
                         if (rs1.getString("username").equals(username)) {
@@ -190,12 +192,13 @@ public class Model {
                                 JOptionPane.showMessageDialog(null, "Insufficient stock!");
                             } else if (stock == qty) {
                                 if (balance < price) {
-                                    JOptionPane.showMessageDialog(null, "Insufficient money!");
+                                    JOptionPane.showMessageDialog(null, "Insufficient amount!");
                                 } else {
                                     if (age >= 18 && age <= 59) {
                                         JOptionPane.showMessageDialog(null, "The amount is: " + (qty * price));
+                                        System.out.println("The amount is " + (qty * price));
                                         String sql = "DELETE FROM `tblmedicine` WHERE id='" + id + "'";
-                                        String sql1 = "UPDATE `tblcustomer` SET `balance`=" + balanceLeftAdult + " WHERE username='" + username + "'";
+                                        String sql1 = "UPDATE `tblorder` SET `amount`=" + balanceLeftAdult + " WHERE username='" + username + "'";
                                         stmt.addBatch(sql);
                                         stmt.addBatch(sql1);
                                         stmt.executeBatch();
@@ -204,7 +207,7 @@ public class Model {
                                     } else {
                                         JOptionPane.showMessageDialog(null, "The amount is: " + ((qty * price) * .80));
                                         String sql = "DELETE FROM `tblmedicine` WHERE id='" + id + "'";
-                                        String sql1 = "UPDATE `tblcustomer` SET `balance`=" + balanceLeftSenior + " WHERE username='" + username + "'";
+                                        String sql1 = "UPDATE `tblorder` SET `amount`=" + balanceLeftSenior + " WHERE username='" + username + "'";
                                         stmt.addBatch(sql);
                                         stmt.addBatch(sql1);
                                         stmt.executeBatch();
@@ -215,12 +218,12 @@ public class Model {
                             }
                         } else {
                             if (balance < price) {
-                                JOptionPane.showMessageDialog(null, "Insufficient money!");
+                                JOptionPane.showMessageDialog(null, "Insufficient amount!");
                             } else {
                                 if (age >= 18 && age <= 59) {
                                     JOptionPane.showMessageDialog(null, "The amount is: " + (qty * price));
                                     String sql = "UPDATE `tblmedicine` SET `stock`=" + (stock - qty) + " WHERE id='" + id + "'";
-                                    String sql1 = "UPDATE `tblcustomer` SET `balance`=" + balanceLeftAdult + " WHERE username='" + username + "'";
+                                    String sql1 = "UPDATE `tblorder` SET `amount`=" + balanceLeftAdult + " WHERE username='" + username + "'";
                                     stmt.addBatch(sql);
                                     stmt.addBatch(sql1);
                                     stmt.executeBatch();
@@ -230,7 +233,7 @@ public class Model {
                                 } else {
                                     JOptionPane.showMessageDialog(null, "The amount is: " + ((qty * price) * .80));
                                     String sql = "UPDATE `tblmedicine` SET `stock`=" + (stock - qty) + " WHERE id='" + id + "'";
-                                    String sql1 = "UPDATE `tblcustomer` SET `balance`=money" + balanceLeftSenior + " WHERE username='" + username + "'";
+                                    String sql1 = "UPDATE `tblorder` SET `amount`=amount" + balanceLeftSenior + " WHERE username='" + username + "'";
                                     stmt.addBatch(sql);
                                     stmt.addBatch(sql1);
                                     stmt.executeBatch();
@@ -329,4 +332,19 @@ public class Model {
 //
 //    }
 //    --------------------------------------------------------------------------------------------
+    public boolean removeMedicine(int ID) {
+        boolean success = false;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/jude", "root", "");
+            Statement stmt = con.createStatement();
+            String sql = "DELETE FROM `tblmedicine` WHERE id='" + ID + "'";
+            stmt.executeUpdate(sql);
+            success = true;
+            con.close();
+        } catch (ClassNotFoundException | SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error connecting to database!");
+        }
+        return success;
+    }
 }
