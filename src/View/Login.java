@@ -40,7 +40,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cancel = new javax.swing.JButton();
-        login1 = new javax.swing.JButton();
+        login = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
 
@@ -82,16 +82,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        login1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        login1.setText("Login");
-        login1.addMouseListener(new java.awt.event.MouseAdapter() {
+        login.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        login.setText("Login");
+        login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                login1MouseClicked(evt);
+                loginMouseClicked(evt);
             }
         });
-        login1.addActionListener(new java.awt.event.ActionListener() {
+        login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                login1ActionPerformed(evt);
+                loginActionPerformed(evt);
             }
         });
 
@@ -116,7 +116,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(userLayout.createSequentialGroup()
-                        .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(57, 57, 57)
                         .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11))
@@ -139,7 +139,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addGroup(userLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(login1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -194,7 +194,21 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_userpActionPerformed
 
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
-     String username = usern.getText();
+   
+    }//GEN-LAST:event_cancelMouseClicked
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        new Home().setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_cancelActionPerformed
+
+    private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
+
+    }//GEN-LAST:event_loginMouseClicked
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
+        String username = usern.getText();
         String password = userp.getText();
 
 //        Controller acc = new Controller();
@@ -211,21 +225,7 @@ public class Login extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Invalid Credentials", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_cancelMouseClicked
-
-    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        new Home().setVisible(true);
-        dispose();
-
-    }//GEN-LAST:event_cancelActionPerformed
-
-    private void login1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_login1MouseClicked
-
-    private void login1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_login1ActionPerformed
+    }//GEN-LAST:event_loginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,7 +290,7 @@ catch (javax.swing.UnsupportedLookAndFeelException ex) {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JButton login1;
+    private javax.swing.JButton login;
     private javax.swing.JPanel user;
     private javax.swing.JTextField usern;
     private javax.swing.JPasswordField userp;

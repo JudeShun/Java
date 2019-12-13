@@ -25,7 +25,7 @@ public class Controller {
 
     Order ord = new Order();
 
-    public boolean register(String username, String age1, String password, String password1, String balance) {
+    public boolean register(String username, String age1, String password, String password1) {
         boolean finish = false;
 
         try {
@@ -45,8 +45,8 @@ public class Controller {
                         try {
                             if (password1.equals(password) == true) {
                                 try {
-                                    double money = Double.parseDouble(balance);
-                                    return finish = model.register(username, age, password, money);
+//                                    double money = Double.parseDouble(balance);
+                                    return finish = model.register(username, age, password);
                                 } catch (NumberFormatException e) {
                                     System.out.println(e);
                                 }
@@ -84,28 +84,28 @@ public class Controller {
             model.purchaseMedicine(parseInt(id), parseInt(quantity), customer_id);
         }
     }
-
-    public double getBalance(int userId) {
-        double balance = 0;
-        Connection conn = null;
-        try {
-            String myDriver = "org.gjt.mm.mysql.Driver";
-            String myUrl = "jdbc:mysql://localhost/jude";
-            Class.forName(myDriver);
-            conn = DriverManager.getConnection(myUrl, "root", "");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT balance FROM `tblcustomer` WHERE id='" + userId + "'");
-            if (rs.next()) {
-                balance = rs.getDouble("balance");
-            }
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return balance;
-    }
+//
+//    public double getBalance(int userId) {
+//        double balance = 0;
+//        Connection conn = null;
+//        try {
+//            String myDriver = "org.gjt.mm.mysql.Driver";
+//            String myUrl = "jdbc:mysql://localhost/jude";
+//            Class.forName(myDriver);
+//            conn = DriverManager.getConnection(myUrl, "root", "");
+//            Statement stmt = conn.createStatement();
+//            ResultSet rs = stmt.executeQuery("SELECT balance FROM `tblcustomer` WHERE id='" + userId + "'");
+//            if (rs.next()) {
+//                balance = rs.getDouble("balance");
+//            }
+//            conn.close();
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return balance;
+//    }
 
 //    public boolean order(String username, String medId, String quantity) {
 //        boolean finish = false;

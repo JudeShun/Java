@@ -25,16 +25,15 @@ public class Model {
     final String USER = "root";
     final String PASS = "";
     int userId;
-    double balance;
-
-    public boolean register(String username, int age, String password, double money) {
+  
+    public boolean register(String username, int age, String password) {
         boolean finish = false;
         Connection conn = null;
 
         try {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO `tblcustomer`(`username`, `age`, `password`, `balance`) VALUES ('" + username + "'," + age + ",'" + password + "'," + money + ")";
+            String sql = "INSERT INTO `tblcustomer`(`username`, `age`, `password`) VALUES ('" + username + "'," + age + ",'" + password + "')";
             stmt.executeUpdate(sql);
             return finish = true;
         } catch (SQLException e) {
@@ -62,9 +61,9 @@ public class Model {
                 ResultSet rs1 = stmt.executeQuery("SELECT * FROM `tblcustomer` where username = '" + username + "' and password = '" + password + "'");
                 if (rs1.next()) {
                     this.userId = rs1.getInt("id");
-                    this.balance = rs1.getDouble("balance");
+//                    this.balance = rs1.getDouble("balance");
                 }
-                System.out.println(this.balance);
+//                System.out.println(this.balance);
 
                 Viewmed vmed = new Viewmed(this.userId);
                 if (rs1.getString("password") != null && rs1.getString("username") != null) {
@@ -143,14 +142,14 @@ public class Model {
 
 //                    select balance id = this.userId
 //                    balance - amount_paid
-                    System.out.println(this.balance);
+//                    System.out.println(this.balance);
+//
+//                    this.balance -= amount_paid;
+//                    System.out.println(this.balance);
 
-                    this.balance -= amount_paid;
-                    System.out.println(this.balance);
-
-                    String updateBalance = "UPDATE `tblcustomer` SET balance= '" + this.balance + "' WHERE id = '" + this.userId + "'";
-                    stmtUpdate = conn.createStatement();
-                    stmtUpdate.executeUpdate(updateBalance);
+//                    String updateBalance = "UPDATE `tblcustomer` SET balance= '" + this.balance + "' WHERE id = '" + this.userId + "'";
+//                    stmtUpdate = conn.createStatement();
+//                    stmtUpdate.executeUpdate(updateBalance);
 
                     stmtInsert.executeUpdate(insertPurchasedMed, Statement.RETURN_GENERATED_KEYS);
                     stmtInsert = conn.createStatement();

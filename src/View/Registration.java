@@ -37,7 +37,6 @@ public class Registration extends javax.swing.JFrame {
         Header = new javax.swing.JPanel();
         tITLE = new javax.swing.JLabel();
         Main = new javax.swing.JPanel();
-        account = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         account1 = new javax.swing.JLabel();
         account2 = new javax.swing.JLabel();
@@ -48,7 +47,6 @@ public class Registration extends javax.swing.JFrame {
         Password = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         account3 = new javax.swing.JLabel();
-        Bal = new javax.swing.JTextField();
         cancel = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -82,10 +80,6 @@ public class Registration extends javax.swing.JFrame {
 
         Main.setBackground(new java.awt.Color(0, 0, 0));
         Main.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        account.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        account.setForeground(new java.awt.Color(255, 255, 255));
-        account.setText("Deposit Balance");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,12 +120,6 @@ public class Registration extends javax.swing.JFrame {
         account3.setForeground(new java.awt.Color(255, 255, 255));
         account3.setText("Confirm Password");
 
-        Bal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BalActionPerformed(evt);
-            }
-        });
-
         cancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         cancel.setText("Cancel");
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -171,16 +159,11 @@ public class Registration extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(MainLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(MainLayout.createSequentialGroup()
-                                .addComponent(register)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancel)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(Bal))))
+                        .addGap(131, 131, 131)
+                        .addComponent(register)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancel)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         MainLayout.setVerticalGroup(
@@ -204,11 +187,7 @@ public class Registration extends javax.swing.JFrame {
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(account3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(account, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Bal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(95, 95, 95)
                 .addGroup(MainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register)
                     .addComponent(cancel))
@@ -247,9 +226,9 @@ public class Registration extends javax.swing.JFrame {
         String age = Age.getText();
         String password = Password.getText();
         String password1 = Confirm.getText();
-        String balance = Bal.getText();
-        
-        if(control.register(username, age, password, password1, balance) == true){
+//        String balance = Bal.getText();
+    
+        if(control.register(username, age, password, password1) == true){
             JOptionPane.showMessageDialog(rootPane, "Successfully registered!");
             this.dispose();
             new Login().setVisible(true);
@@ -307,10 +286,6 @@ public class Registration extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AgeActionPerformed
 
-    private void BalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BalActionPerformed
-
     private void cancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelMouseClicked
        new Home().setVisible(true);
        dispose();
@@ -357,13 +332,11 @@ public class Registration extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Age;
-    private javax.swing.JTextField Bal;
     private javax.swing.JPasswordField Confirm;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Main;
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField Username;
-    private javax.swing.JLabel account;
     private javax.swing.JLabel account1;
     private javax.swing.JLabel account2;
     private javax.swing.JLabel account3;

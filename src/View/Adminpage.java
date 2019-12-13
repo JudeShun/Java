@@ -35,7 +35,7 @@ public class Adminpage extends javax.swing.JFrame {
         viewmed = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        remove1 = new javax.swing.JButton();
+        remove = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -75,10 +75,10 @@ public class Adminpage extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("\"Best for your needs!\"");
 
-        remove1.setText("Remove Medicine");
-        remove1.addMouseListener(new java.awt.event.MouseAdapter() {
+        remove.setText("Remove Medicine");
+        remove.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                remove1MouseClicked(evt);
+                removeMouseClicked(evt);
             }
         });
 
@@ -89,7 +89,7 @@ public class Adminpage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(remove1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addmed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -117,7 +117,7 @@ public class Adminpage extends javax.swing.JFrame {
                     .addComponent(vieworder))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(remove1)
+                    .addComponent(remove)
                     .addComponent(viewmed))
                 .addGap(46, 46, 46)
                 .addComponent(logout)
@@ -192,10 +192,10 @@ public class Adminpage extends javax.swing.JFrame {
         home.setVisible(true);
     }//GEN-LAST:event_logoutMouseClicked
 
-    private void remove1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove1MouseClicked
+    private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked
         new RemoveMed().setVisible(true);
         dispose();
-    }//GEN-LAST:event_remove1MouseClicked
+    }//GEN-LAST:event_removeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -239,7 +239,7 @@ public class Adminpage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logout;
-    private javax.swing.JButton remove1;
+    private javax.swing.JButton remove;
     private javax.swing.JButton viewmed;
     private javax.swing.JButton vieworder;
     // End of variables declaration//GEN-END:variables

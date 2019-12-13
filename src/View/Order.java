@@ -205,43 +205,43 @@ public class Order extends javax.swing.JFrame {
 //            dispose(); 
 //
 //        }
-         try {
-            // create a mysql database connection
-            String myDriver = "org.gjt.mm.mysql.Driver";
-            String myUrl = "jdbc:mysql://localhost/jude";
-            Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "");
-
-            // the mysql insert statement
-            //register is the register name for the table in the database
-            String query = "insert into tblorder(genericname,brandname,price,stock,type)"
-                    + " values (?,?,?,?,?)";
-
-            // create the mysql insert preparedstatement
-            PreparedStatement preparedStmt = conn.prepareStatement(query);
-            preparedStmt.setString(1, id.getText());
-            preparedStmt.setString(2, qty.getText());
-           
-
-            // execute the preparedstatement
-            preparedStmt.execute();
-            JOptionPane.showMessageDialog(null, "!");
-            Adminpage ad = new Adminpage();
-            ad.setVisible(true);
-            dispose();
-            conn.close();
-            
-            
-        } catch (Exception e) {
-            System.err.println("Got an exception!");
-            System.err.println(e.getMessage());
-        }
+//         try {
+//            // create a mysql database connection
+//            String myDriver = "org.gjt.mm.mysql.Driver";
+//            String myUrl = "jdbc:mysql://localhost/jude";
+//            Class.forName(myDriver);
+//            Connection conn = DriverManager.getConnection(myUrl, "root", "");
+//
+//            // the mysql insert statement
+//            //register is the register name for the table in the database
+//            String query = "insert into tblorder(genericname,brandname,price,stock,type)"
+//                    + " values (?,?,?,?,?)";
+//
+//            // create the mysql insert preparedstatement
+//            PreparedStatement preparedStmt = conn.prepareStatement(query);
+//            preparedStmt.setString(1, id.getText());
+//            preparedStmt.setString(2, qty.getText());
+//           
+//
+//            // execute the preparedstatement
+//            preparedStmt.execute();
+//            JOptionPane.showMessageDialog(null, "!");
+//            Adminpage ad = new Adminpage();
+//            ad.setVisible(true);
+//            dispose();
+//            conn.close();
+//            
+//            
+//        } catch (Exception e) {
+//            System.err.println("Got an exception!");
+//            System.err.println(e.getMessage());
+//        }
 
     }//GEN-LAST:event_orderMouseClicked
 
     private void backMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backMouseClicked
-     new Page().setVisible(true);
-     dispose(); 
+//     new Page().setVisible(true);
+//     dispose(); 
     }//GEN-LAST:event_backMouseClicked
 
     /**

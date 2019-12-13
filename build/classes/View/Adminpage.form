@@ -59,7 +59,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="remove1" max="32767" attributes="0"/>
+                      <Component id="remove" max="32767" attributes="0"/>
                       <Component id="addmed" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="remove1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="remove" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="viewmed" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
@@ -150,12 +150,12 @@
             <Property name="text" type="java.lang.String" value="&quot;Best for your needs!&quot;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="remove1">
+        <Component class="javax.swing.JButton" name="remove">
           <Properties>
             <Property name="text" type="java.lang.String" value="Remove Medicine"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="remove1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="removeMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

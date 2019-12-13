@@ -5,10 +5,8 @@
  */
 package View;
 
-/**
- *
- * @author 2ndyrGroupB
- */
+import Controller.*;
+
 public class Balance extends javax.swing.JFrame {
 
     /**
@@ -20,6 +18,7 @@ public class Balance extends javax.swing.JFrame {
 
     public Balance() {
         initComponents();
+        Controller con = new Controller();
     }
 
     public Balance(int userId) {

@@ -23,7 +23,9 @@ public class Viewmed extends javax.swing.JFrame {
      *
      * @param user_id
      */
-    
+    public Viewmed(){
+        initComponents();
+    }
     public Viewmed(int user_id) {
         
         initComponents();
